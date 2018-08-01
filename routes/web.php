@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function (){
 	Route::get('/email_verification/send', 'EmailVerificationController@send')->name('email_verification.send');
 	//邮箱验证中间件
 	Route::group(['middleware' => 'email_verified'], function() {
-
+        Route::get('user_addresses', 'UserAddressController@index')->name('user_addresses.index');
 	});
 });
 
