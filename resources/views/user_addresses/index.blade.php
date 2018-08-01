@@ -28,8 +28,12 @@
                                     <td>{{ $address->zip }}</td>
                                     <td>{{ $address->contact_phone }}</td>
                                     <td>
-                                        <button class="btn btn-default">修改</button>
-                                        <button class="btn btn-danger">删除</button>
+                                        <a href="{{ route('user_addresses.edit', ['user_address' => $address->id]) }}" class="btn btn-default">修改</a>
+                                        {{--<form action="{{ route('user_addresses.destroy', ['user_address' => $address->id]) }}" method="post" style="display: inline-block">--}}
+                                            {{--{{ method_field('DELETE') }}--}}
+                                            {{--{{ csrf_field() }}--}}
+                                        <button class="btn btn-danger btn-del-address" type="button" data-id="{{ $address->id }}">删除</button>
+                                        {{--</form>--}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -40,4 +44,34 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scriptAfterJs')
+    <script>
+        $(document).ready(function () {
+            //删除按钮点击事件
+            $(".btn-del-address").click(function () {
+                var id = $(this).data('id');
+                //调用sweetAlert
+                swal({
+                    title: "确认要删除该地址?",
+                    icon: "warning",
+                    buttons: ['取消', '确定'],
+                    dangerMode: true,
+                }).then({
+                    //用户点击按钮后触发该函数
+                    function(willDelete) {
+                        // 用户点击确定 willDelete 值为 true， 否则为 false
+                        // 用户点了取消，啥也不做
+                        if (!willDelete) {
+                            return;
+                        }
+                        //调用删除接口
+                        axios.delete('user_addresses/'+id).then(function () {
+                            location.reload();
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
