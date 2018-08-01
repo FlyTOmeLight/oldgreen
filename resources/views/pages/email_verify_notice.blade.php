@@ -8,6 +8,7 @@
 		</div>
 		<div class="panel-body text-center">
 			<h1>请先验证邮箱</h1>
+			<a href="{{ route('email_verification.send') }}" class="btn btn-link">重新发送验证邮件</a>
 			<a href="{{ route('root') }}" class="btn btn-primary">
 				返回首页
 			</a>
