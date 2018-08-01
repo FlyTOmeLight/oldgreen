@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth'], function (){
 	//邮箱验证中间件
 	Route::group(['middleware' => 'email_verified'], function() {
         Route::get('user_addresses', 'UserAddressController@index')->name('user_addresses.index');
+        Route::get('user_addresses/create', 'UserAddressController@create')->name('user_addresses.create');
+        Route::post('user_addresses', 'UserAddressController@store')->name('user_addresses.store');
 	});
 });
 
