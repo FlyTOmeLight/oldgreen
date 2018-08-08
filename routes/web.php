@@ -10,9 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'PagesController@root')->name('root');
-
+Route::redirect('/', '/products')->name('root');
+Route::get('/products', 'ProductsController@index')->name('products.index');
 Auth::routes();
 
 //登录中间件认证
@@ -22,13 +21,20 @@ Route::group(['middleware' => 'auth'], function (){
 	Route::get('/email_verification/send', 'EmailVerificationController@send')->name('email_verification.send');
 	//邮箱验证中间件
 	Route::group(['middleware' => 'email_verified'], function() {
-        Route::get('user_addresses', 'UserAddressController@index')->name('user_addresses.index');
-        Route::get('user_addresses/create', 'UserAddressController@create')->name('user_addresses.create');
-        Route::post('user_addresses', 'UserAddressController@store')->name('user_addresses.store');
-        Route::get('user_addresses/{user_address}', 'UserAddressController@edit')->name('user_addresses.edit');
-        Route::put('user_addresses/{user_address}', 'UserAddressController@update')->name('user_addresses.update');
-        Route::delete('user_addresses/{user_address}', 'UserAddressController@destroy')->name('user_addresses.destroy');
+                Route::get('user_addresses', 'UserAddressController@index')->name('user_addresses.index');
+                Route::get('user_addresses/create', 'UserAddressController@create')->name('user_addresses.create');
+                Route::post('user_addresses', 'UserAddressController@store')->name('user_addresses.store');
+                Route::get('user_addresses/{user_address}', 'UserAddressController@edit')->name('user_addresses.edit');
+                Route::put('user_addresses/{user_address}', 'UserAddressController@update')->name('user_addresses.update');
+                Route::delete('user_addresses/{user_address}', 'UserAddressController@destroy')->name('user_addresses.destroy');
+                Route::post('products/{product}/favor', 'ProductsController@favor')->name('products.favor');
+                Route::delete('products/{product}/disfavor', 'ProductsController@disfavor')->name('products.disfavor');
+                Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
+                Route::post('cart', 'CartController@add')->name('cart.add');
+                Route::get('cart', 'CartController@index')->name('cart.index');
+                Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
+                Route::post('orders', 'OrdersController@store')->name('orders.store');
 	});
 });
 
-
+Route::get('/products/{product}', 'ProductsController@show')->name('products.show');

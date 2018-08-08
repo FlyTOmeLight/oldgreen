@@ -20,6 +20,9 @@
 					<li><a href="{{ route('login') }}">登录</a></li>
 					<li><a href="{{ route('register') }}">注册</a></li>
 				@else 
+					<li>
+						<a href="{{ route('cart.index') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+					</li>
 					<li class="dropdown-menu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="falae">
 							<span class="user-avatar pull-left" style="margin-right: 9px; margin-top: -5px">
@@ -30,6 +33,9 @@
 						<ul class="dropdown-menu" role="menu">
 							<li>
 								<a href="{{ route('user_addresses.index') }}">收货地址</a>
+							</li>
+							<li>
+								<a href="{{ route('products.favorites') }}">收藏列表</a>
 							</li>
 							<li>
 								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

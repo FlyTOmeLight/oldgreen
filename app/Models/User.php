@@ -32,8 +32,33 @@ class User extends Authenticatable
         'email_verified' => 'boolean',
     ];
 
+    /**
+     * 与地址表的关联
+     * @return [type] [description]
+     */
     public function addresses()
     {
         return $this->hasMany(UserAddress::class);
     }
+
+    /**
+     * 与收藏表关联
+     * @return [type] [description]
+     */
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(Product::class, 'user_favorite_products')
+                ->withTimestamps()
+                ->orderBy('user_favorite_products.created_at', 'desc');
+    }
+
+    /**
+     * 与购物车表关联
+     * @return [type] [description]
+     */
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
 }
