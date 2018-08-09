@@ -13,6 +13,19 @@ use App\Jobs\CloseOrder;
 
 class OrdersController extends Controller
 {	
+
+	/**
+	 * 订单详情
+	 * @param  Order   $order   [description]
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
+	public function show(Order $order, Request $request)
+	{
+		$this->authorize('own', $order);
+		return view('orders.show', ['order' => $order->load(['items.productSku', 'items.product'])]);
+	}
+
 	/**
 	 * 订单列表
 	 * @param  Request $request [description]
