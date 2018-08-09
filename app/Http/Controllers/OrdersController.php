@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use App\Models\ProductSku;
 use App\Models\Order;
@@ -11,7 +12,27 @@ use App\Exceptions\InvalidRequestException;
 use App\Jobs\CloseOrder;
 
 class OrdersController extends Controller
-{
+{	
+	/**
+	 * 订单列表
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
+	public function index(Request $request)
+	{
+		$orders = Order::query()
+				->with('items.product', 'items.productSku')
+				->where('user_id', $request->user()->id)
+				->orderBy('created_at', 'desc')
+				->paginate();
+
+		return view('orders.index', ['orders' => $orders]);
+	}
+	/**
+	 * 提交订单
+	 * @param  OrderRequest $request [description]
+	 * @return [type]                [description]
+	 */
     public function store(OrderRequest $request)
     {
     	$user = $request->user();
@@ -60,7 +81,7 @@ class OrdersController extends Controller
 
     		return $order;
     	});
-    	
+
     	$this->dispatch(new CloseOrder($order, config('app.order_ttl')));
 
     	return $order;

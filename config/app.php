@@ -2,7 +2,7 @@
 
 return [
     // 订单关闭延迟时间
-    'order_ttl' => 30,
+    'order_ttl' => 1800,
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -13,7 +13,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-    
+
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
