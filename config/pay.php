@@ -1,0 +1,23 @@
+<?php 
+
+return [
+	'alipay' => [
+		'app_id' => '2016091400507047',
+		'ali_public_key' => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqA1Fbyp3U0Rn/L8Z46hMswmDlvJfo8sTsSEhWFzdhoJ2bKsCMBc6uQ7ZMZvZJBS7S+2WS3cutS0YCfCXZEO/6iALOc4VqJ0yuQgdpKvkc/ZSeUdRA28kOyWRC3zRv1aSgbMmJsMhNhrePlyn8wUx0M58Hp/OElvTgazaAyis8YFCeIF+X6sY3yWou5S1+EM2fmgF7Snp/yXmyngUBeV8+nXQoUO1WH9S1hx0jWKk/AjpgMZ17o1K37hKWa1U6ihbvjP4/HhZ9R6WvNvPTwoRT/OuVRd1e4rsbLqyyjQJwLrsC/DefnD825Cjg1rrmImk3rCdpnZSC2uUmNVpMa1kewIDAQAB',
+		'private_key' => 'MIIEpAIBAAKCAQEAxkzZpzwNe3YsLK+36XZMTpsbwy++F23V6Y4rGA9Pu05a0vHa1AXYWVjPGYgcgkmj8aoClGXsd9TvoG0yLagjucYXFBE9BbaNyimTTf/IEDG3ktWm71vWxBX49ML5KX78HbUa+Sdw0f+XLANYokkl5PpLx5JtXSBSSPTbEByzF1Fj8FMNDvv8mJ/LG30wzbRPTSM/YtkrQyfz/GWL4jc5oP02cYOCsuCbwaxFt2U9Nvp3y084eXChdk02RYgSDOPvRHYr5UAMD1KFeylX6YVD8XLujMguaYkhTNVU4ZCMDYYRKFv+Sp4xfhkv0wAMEPSvkoeaZdd/9o66G1w9bS7CbwIDAQABAoIBAQDE2QsC8SEtGvz1CyYVMmLDcUQY+W7JUTYVGBT9WE280SZl2sJw0LCY2QkU/kHWsAV3412WNKuNtSp+5Yb3Pb7hLpxARnB+GF8efTEGL9BJCyGBOGfzmgZTNsChMF8o6y6YyuxQwu9C92b4wQWea+CbMkBBh8DavjgQxkgj8WlyzY148s1xk9erk2Tp+6RifCw81lxlqq0g++xnwXliLL3kCJSpGI1SdL/xw5djfmnlB0Ap+U88vmLBo2rAbNUzAKE6dRjr3QwPao4NjpNntSDBFbMU3pMFyk3Q7P+W5BSD/Mu1ZQvHlzp2gy9RhVWgZRk4+PTYPUZ+vdnJvCvK778hAoGBAP0vz89GpPyS5YrewHnejxQVx8PJw5Wd8C76ewdEZFApYxD1c83bEK8jZh7uBsbCSQn72vs7ZbFDdGPRtlG8EeHNieTG9mBGw5zGiA2Byn4SyAdnLFhPaVCWpOQX7ZNrQsMXFSMCZblSc1HhrKzSkjrjJq+J9xH/cAcRj7yUUgvfAoGBAMiA6feZpFZ7FMQcGxostNw8ocDYoGeYZLi6QpA34gu36gI4ZuWQ+EzDqJDGmXp9zVPRmMZknHsFkvBN1RbwEC57nbvGmqNbU+nZqPLFeaWM+5v9afjo41z+cNC5QKVALXeCoTIkGuLDWhJKkbO4uKJQr48wKAEngeQbBcV5KRtxAoGAG46BosDAolDmtOersVf84KXCOVgTdoxbIPHYRCE4fdUTWDwu33/xX+6NZd5oVGe/BVwpKGD9n36FA3xGyLycgaQaVxEkrbPmBIFDO50dyf0HUm7zT6VNBB1xUvYbwIjTGmK/xTC0m6gSrx3N6n18tvYUNtTgVFAmBE7wAwltqKcCgYEAg6oD+g/ulsukS1OZiIqrCaTXI2gdjWnJWnUVmNbZnZBcHrEjAMU+CErDuq5vwrwxxUTx6fXPvAlhAGRb9gAW4C9U2SYGDhe+9uVzyFhdFZWK9Fho6ockJsD/HFFKXjnSoZQqfl6vORHHaBOHslkvBYeugXzCCGAFL+F+3Lo/gEECgYA1edZ3F+mrb/VzrRRC7d26tBfKFhSY5RpMc6tEEMn3mndzWNxyrekzfYXG6uILZPvz3+uF+CyUei2qLzMJUAadCMOtCkBUC7Y6uz2BL1KJmXm9e1frKHlXL3R0BM2pxy0n1H8I4aQ5SIWKtaK0BzdnJsYfzu12seK1W3y93nl1Pw==',
+		'log' => [
+			'file' => storage_path('logs/alipay.log'),
+		],
+	],
+
+	'wechat' => [
+		'app_id' => '',
+		'mch_id' => '',
+		'key' => '',
+		'cert_client' => '',
+		'cert_key' => '',
+		'log' => [
+			'file' => storage_path('logs/wechat_pay.log'),
+		],
+	],
+];

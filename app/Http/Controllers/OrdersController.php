@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
-// use App\Models\ProductSku;
+use App\Http\Requests\SendReviewRequest;
 use App\Models\Order;
 use App\Models\UserAddress;
-// use Carbon\Carbon;
-// use App\Exceptions\InvalidRequestException;
-// use App\Jobs\CloseOrder;
 use App\Services\OrderService;
+use App\Exceptions\InvalidRequestException;
 
 class OrdersController extends Controller
 {	
@@ -104,4 +103,42 @@ class OrdersController extends Controller
 
     	// return $order;
     }
+
+    /**
+     * 用户确认收货
+     * @param  Order   $order   [description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function received(Order $order, Request $request)
+    {
+        //校验权限
+        $this->authorize('own', $order);
+        //判断订单状态
+        if ($order->ship_status !== Order::SHIP_STATUS_DELIVERED) {
+            throw new InvalidRequestException('发货状态不正确');
+        }
+        $order->update([
+            'ship_status' => Order::SHIP_STATUS_RECEIVED,
+        ]);
+
+        return $order;
+    }
+
+    /**
+     * 跳转评价页面
+     * @param  Order  $order [description]
+     * @return [type]        [description]
+     */
+    public function review(Order $order)
+    {
+        $this->authorize('own', $order);
+
+        if (!$order->paid_at) {
+            throw new InvalidRequestException('该订单未支付，不可评价');
+        }
+
+        return view('orders.review', ['order' => $order->load(['items.product', 'items.productSku'])]);
+    }
+    
 }

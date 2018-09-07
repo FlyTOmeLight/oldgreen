@@ -326,6 +326,13 @@ body {
 }
 .orders-show-page {
   font-size: 12px;
+  .search-button {
+    margin: 10px;
+  }
+  .payment-buttons .receive-button {
+    margin-top: 10px;
+    padding-right: 10px;
+  }
   .vertical-middle {
     vertical-align: middle;
   }

@@ -51,7 +51,7 @@ class OrderService
     		//更新订单总额
     		$order->update(['total_amount' => $totalAmount]);
     		//将下单商品在购物车中移除
-    		$skuIds = collect($request->input('items'))->pluck('sku_id');
+    		$skuIds = collect($items)->pluck('sku_id');
     		app(CartService::class)->remove($skuIds);
 
     		return $order;
