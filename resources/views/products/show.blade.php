@@ -18,7 +18,7 @@
       </div>
       <div class="col-sm-7">
         <div class="title"><span class="label label-default">{{ $product->title }}</span></div>
-        <div class="price"><label>价格</label><em>￥</em><span>{{ $product->price }}</span></div>
+        <div class="price"><label>价格</label><b><em>￥</em></b><span>{{ $product->price }}</span></div>
         <div class="sales_and_reviews">
           <div class="sold_count">累计销量 <span class="count">{{ $product->sold_count }}</span></div>
           <div class="review_count">累计评价 <span class="count">{{ $product->review_count }}</span></div>
