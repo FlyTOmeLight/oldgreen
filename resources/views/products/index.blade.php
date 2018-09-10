@@ -2,15 +2,17 @@
 @section('title', '商品列表')
 @section('content')
 <div class="row">
-	<div class="col-lg-10 col-lg-offset-1">
+	<div class="col-lg-12 col-lg-offset-0.5">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				{{-- 筛选 --}}
 				<div class="row">
 					<form action="{{ route('products.index') }}" class="form-inline search-form">
-						<input type="text" name="search" class="form-control input-sm" placeholder="搜索">
-						<button class="btn btn-primary btn-sm">搜索</button>
-						<select name="order" class="form-control input-sm pull-right">
+						<input type="text" name="search" class="form-control input-lg" placeholder="搜索">
+						<button class="btn btn-lg">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+						<select name="order" class="form-control input-lg pull-right">
 							<option value="">排序方式</option>
 					        <option value="price_asc">价格从低到高</option>
 					        <option value="price_desc">价格从高到低</option>
@@ -27,7 +29,10 @@
 							<div class="product-content">
 								<div class="top">
 									<div class="img"><a href="{{ route('products.show', ['product' => $product->id]) }}"><img src="{{ $product->image_url }}" alt=""></a></div>
-									<div class="price"><b>￥</b>{{ $product->price }}</div>
+									<div class="price">
+										<img src="{{ asset('images/money.png') }}" class="money-img">
+										<span class="money-price"><b>{{ $product->price }}</b></span>
+									</div>
 									<div class="title"><a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a></div>
 								</div>
 								<div class="bottom">

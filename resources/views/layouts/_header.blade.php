@@ -7,8 +7,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="{{ url('/') }}" class="navbar-brand">
-				OLDGreen
+			<a href="{{ url('/') }}" >
+				<img src="{{ asset('images/header.png') }}" id="header-png" class="navbar-brand">
 			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="app-navbar-collapse">

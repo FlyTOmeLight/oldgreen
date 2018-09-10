@@ -3,15 +3,21 @@
 
 @section('content')
 <div class="row">
-<div class="col-lg-10 col-lg-offset-1">
+<div class="col-lg-12 col-lg-offset-0.5">
 <div class="panel panel-default">
   <div class="panel-body product-info">
     <div class="row">
       <div class="col-sm-5">
-        <img class="cover" src="{{ $product->image_url }}" alt="">
+        <div class="exzoom" id="exzoom">
+            <div class="exzoom_img_box">
+              <ul class="exzoom_img_ul">
+                <li><img src="{{ $product->image_url }}" alt=""></li>
+              </ul>           
+            </div>         
+        </div>     
       </div>
       <div class="col-sm-7">
-        <div class="title">{{ $product->title }}</div>
+        <div class="title"><span class="label label-default">{{ $product->title }}</span></div>
         <div class="price"><label>价格</label><em>￥</em><span>{{ $product->price }}</span></div>
         <div class="sales_and_reviews">
           <div class="sold_count">累计销量 <span class="count">{{ $product->sold_count }}</span></div>
@@ -128,6 +134,9 @@
         }
       });
     });
+  });
+  $("#exzoom").exzoom({
+    autoPlay: false,
   });
 </script>
 @endsection

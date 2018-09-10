@@ -17,6 +17,7 @@
 	<title>@yield('title', 'OLDGreen') - SWAGSHOP</title>
 	{{-- 样式 --}}
 	<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/exzoom.css') }}">
 </head>
 <body>
 	<div id="app" class="{{ route_class() }}-page">

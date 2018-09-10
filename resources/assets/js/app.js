@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-
+require('./exzoom');
 window.Vue = require('vue');
 
 /**
