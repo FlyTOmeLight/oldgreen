@@ -140,5 +140,35 @@ class OrdersController extends Controller
 
         return view('orders.review', ['order' => $order->load(['items.product', 'items.productSku'])]);
     }
+
+    public function sendReview(Order $order, SendReviewRequest $request)
+    {
+        $this->authorize('own', $order);
+
+        if (!$order->paid_at) {
+            throw new InvalidRequestException('该订单未支付，不可评价');
+        }
+
+        if ($order->reviewed) {
+            throw new InvalidRequestException('该订单已评价，不可重复提交');
+        }
+
+        $reviews = $request->input('reviews');
+
+        // 开启事务
+        \DB::transaction(function () use ($reviews, $order) {
+            foreach ($reviews as $review) {
+                $orderItem = $order->items()->find($reviews['id']);
+                $orderItem->update([
+                    'rating'      => $review['rating'],
+                    'review'      => $review['review'],
+                    'reviewed_at' => Carbon::now(),
+                ]);
+            }
+            $order->update(['reviewed' => true]);
+        });
+
+        return redirect()->back();
+    }
     
 }
